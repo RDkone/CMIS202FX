@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="756.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cmis202fx.Controller">
+   <children>
+      <Label layoutX="388.0" text="Girl Scouts Manager">
+         <font>
+            <Font name="Dubai Regular" size="36.0" />
+         </font>
+      </Label>
+      <VBox layoutX="41.0" layoutY="129.0" prefHeight="233.0" prefWidth="309.0" style="-fx-border-color: black; -fx-border-width: 3;">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="328.0" text="Manage Scout Troops">
+               <font>
+                  <Font name="Dubai Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTotalTroops" alignment="CENTER" prefHeight="17.0" prefWidth="307.0" text="Total Amount of Troops: 0">
+               <font>
+                  <Font name="Dubai Light" size="16.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="62.0" prefWidth="303.0">
+               <children>
+                  <Button fx:id="addTroopBtn" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#showCreateTroopInput" prefHeight="25.0" prefWidth="83.0" text="Add Troop">
+                     <HBox.margin>
+                        <Insets left="60.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="delTroopBtn" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#removeSelectedTroop" text="Delete Troop">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Button fx:id="assignGSTBtn" mnemonicParsing="false" onMouseClicked="#showAddAssignGirlScout" text="Assign Scout To Troop">
+               <VBox.margin>
+                  <Insets left="80.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <ListView fx:id="troopLV" layoutX="41.0" layoutY="418.0" prefHeight="290.0" prefWidth="309.0" />
+      <Label alignment="CENTER" layoutX="41.0" layoutY="378.0" prefHeight="41.0" prefWidth="309.0" text="Troop Listing (Name &amp; ID)">
+         <font>
+            <Font name="Dubai Bold" size="23.0" />
+         </font>
+      </Label>
+      <Button fx:id="troopDetailBtn" layoutX="140.0" layoutY="717.0" mnemonicParsing="false" onMouseClicked="#expandTroopInfo" text="View Troop Detail" />
+      <VBox layoutX="426.0" layoutY="129.0" prefHeight="233.0" prefWidth="309.0" style="-fx-border-color: black; -fx-border-width: 3;">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="328.0" text="Manage Scouts">
+               <font>
+                  <Font name="Dubai Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTotalGS" alignment="CENTER" prefHeight="17.0" prefWidth="307.0" text="Total Amount of Girl Scouts: 0">
+               <font>
+                  <Font name="Dubai Light" size="16.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="45.0" prefWidth="303.0">
+               <children>
+                  <Button fx:id="createGSBtn" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#showAddAssignGirlScout" prefHeight="25.0" prefWidth="99.0" text="Add New Scout">
+                     <HBox.margin>
+                        <Insets left="50.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="delGSBtn" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#removedSelectedGirlScout" prefHeight="25.0" prefWidth="99.0" text="Delete Scout">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="45.0" prefWidth="303.0">
+               <children>
+                  <Button fx:id="addCOrderBtn" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#showAddOrderToScout" prefHeight="25.0" prefWidth="138.0" text="Add Cookie Order">
+                     <HBox.margin>
+                        <Insets left="8.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="delCOrderBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Delete Cookie Order(s)" onMouseClicked="#removeCookieOrder">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Button fx:id="changeCOrderBtn" mnemonicParsing="false" onMouseClicked="#showChangeOrder" prefHeight="25.0" prefWidth="135.0" text="Change Cookie Order">
+               <VBox.margin>
+                  <Insets left="80.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <ListView fx:id="gsLV" layoutX="426.0" layoutY="418.0" prefHeight="290.0" prefWidth="309.0" />
+      <Label alignment="CENTER" layoutX="426.0" layoutY="378.0" prefHeight="41.0" prefWidth="309.0" text="Girl Scout Listing">
+         <font>
+            <Font name="Dubai Bold" size="23.0" />
+         </font>
+      </Label>
+      <VBox layoutX="832.0" layoutY="282.0" prefHeight="233.0" prefWidth="178.0" style="-fx-border-color: black; -fx-border-width: 3;">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="328.0" text="Settings">
+               <font>
+                  <Font name="Dubai Bold" size="23.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="45.0" prefWidth="303.0">
+               <children>
+                  <Button fx:id="saveBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Save" onMouseClicked="#saveProject">
+                     <HBox.margin>
+                        <Insets left="40.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="45.0" prefWidth="303.0">
+               <children>
+                  <Button fx:id="loadBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Load" onMouseClicked="#loadSavedProject">
+                     <HBox.margin>
+                        <Insets left="40.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Button fx:id="exitBtn" mnemonicParsing="false" onMouseClicked="#systemExit" prefHeight="25.0" prefWidth="82.0" text="Exit">
+               <VBox.margin>
+                  <Insets left="40.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <Button fx:id="gsOrdersBtn" layoutX="525.0" layoutY="717.0" mnemonicParsing="false" onMouseClicked="#expandGSOrders" prefHeight="25.0" prefWidth="111.0" text="View Orders" />
+   </children>
+</AnchorPane>

@@ -125,6 +125,9 @@ class ScoutTroops implements Iterable<Integer>, Serializable {
         return get;
     }
 
+    public String getTotalTroops(){
+        return String.valueOf(numbersMap.size());
+    }
 
     @Override
     public Iterator<Integer> iterator() {

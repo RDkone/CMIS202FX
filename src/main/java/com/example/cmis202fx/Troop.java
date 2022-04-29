@@ -69,6 +69,13 @@ public class Troop implements Comparable<Troop>,Iterable<GirlScout>, Serializabl
     public void setDenMother(String denMother) {
         this.denMother = denMother;
     }
+    public List<String> listTroopMemberNames(){
+        List<String> gsList = new ArrayList<>();
+        for (int i = 0; i < troopMembers.size(); i++){
+            gsList.add(troopMembers.get(i).getScoutName());
+        }
+        return gsList;
+    }
 
     public String listTroopMembers(){
         String sp = "";
@@ -99,6 +106,16 @@ public class Troop implements Comparable<Troop>,Iterable<GirlScout>, Serializabl
         return status;
 
     }
+    public void removeMembers(){
+        List<String> list = new ArrayList<>();
+        for (GirlScout g : this){
+            list.add(g.getScoutName());
+        }
+        for (String s:
+             list) {
+            this.removeMember(s);
+        }
+    }
 
     @Override
     public int compareTo(Troop t) {
@@ -118,19 +135,23 @@ public class Troop implements Comparable<Troop>,Iterable<GirlScout>, Serializabl
         }
     }
 
-
     @Override
     public Iterator<GirlScout> iterator() {
         return troopMembers.iterator();
     }
 
+    public String toListView(){
+        return troopName + " -- " + "[" + troopNumber + "]";
+    }
+
     @Override
     public String toString() {
-        return  "[Troop]\n" +
-                "Name: " + troopName + "\n" +
-                "Den Mother: " + denMother + "\n" +
-                "AgeLeve: " + ageLevel + "\n" +
-                "Troop Number: " + troopNumber + "\n" +
-                "------------------------------------";
+//        return  "[Troop]\n" +
+//                "Name: " + troopName + "\n" +
+//                "Den Mother: " + denMother + "\n" +
+//                "AgeLevel: " + ageLevel + "\n" +
+//                "Troop Number: " + troopNumber + "\n" +
+//                "------------------------------------";
+        return toListView();
     }
 }

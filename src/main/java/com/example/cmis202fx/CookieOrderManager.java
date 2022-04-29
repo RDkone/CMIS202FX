@@ -11,7 +11,7 @@ public class CookieOrderManager implements Serializable {
     }
     public int addOrder(String customer, Cookie cookie, int number){
 
-        if (customer != null && number != 0){
+        if (customer != null && number != 0 && !(number > 50)){
             OrderKey order = new OrderKey(customer, cookie);
             orders.put(order, number);
             return number;
@@ -25,8 +25,11 @@ public class CookieOrderManager implements Serializable {
                 int newBox = orders.get(key) + number;
                 if (newBox <= 0){
                     newBox = 0;
-                    orders.remove(key);
+                    //orders.remove(key);
                     return newBox;
+                }
+                else if (newBox >= 50){
+                    return 51;
                 }
                 else {
                     orders.put(key, newBox);
@@ -34,7 +37,8 @@ public class CookieOrderManager implements Serializable {
                 return Math.max(0, newBox);
             }
             else {
-                return addOrder(key.getCustomerName(), key.getCookie(), number);
+                //return addOrder(key.getCustomerName(), key.getCookie(), number);
+                return 52;
             }
         }
         return 0;
@@ -131,11 +135,11 @@ public class CookieOrderManager implements Serializable {
                 OrderKey ordk = entry.getKey();
                 double pricePerBox = ordk.getCookie().getPrice() * entry.getValue();
                 amountPerC = getTotalAmountPerCustomer(customer);
-                cookieOrderDesc += ordk.getCookie().getCookieName() +
+                cookieOrderDesc += "* " + ordk.getCookie().getCookieName() +
                 " (" + entry.getValue() + " boxes" + ")" + " - $" + pricePerBox + "0" + "\n" + "\t";
             }
         }
-        return name + "(" + amountPerC + ")" + "\n" +
+        return name + " ($" + amountPerC + "0" + ")" + "\n" +
                 "\t" + cookieOrderDesc + "\n";
     }
     public String displayAllOrders(){
@@ -144,7 +148,7 @@ public class CookieOrderManager implements Serializable {
         for (String customer : customers){
             out += displayTotalOrdersPerCustomer(customer);
         }
-        return out;
+        return out + "TOTAL = $" + getTotalAmountOfOrders() + "0" + "\n";
     }
     public void displayRawOrders(){
         for (Map.Entry<OrderKey, Integer> entry: orders.entrySet()){

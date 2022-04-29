@@ -3,7 +3,7 @@ package com.example.cmis202fx;
 public enum Cookie {
     LEMONUPS ("Lemon Ups", 210, 5),
     TOFFEE_TASTIC ("Toffe-tastic", 210, 6),
-    THIN_MINTS ("Thin_Mints", 120, 5),
+    THIN_MINTS ("Thin Mints", 120, 5),
     CARAMEL_CHOCOLATE_CHIP ("Caramel Chocolate Chip", 170, 6),
     DO_SI_DOS ("Do-si-dos", 160, 5),
     LEMONADES ("Lemonades", 200, 5),
