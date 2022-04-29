@@ -28,29 +28,29 @@ public class Model implements Serializable {
         // createModelTroops();
     }
     // Test Method for adding troops and scouts to project view from model.
-    public void createModelTroops() throws InvalidTroopException {
-        Troop t1 = new Troop("Waning Suns", "Susie", "JUNIORS", 9483);
-        Troop t2 = new Troop("Waxing Moons", "Ally", "CADETTES", 2531);
-        Troop t3 = new Troop("Icy Wavers", "Megan", "DAISIES", 6913);
-        Troop t4 = new Troop("Kingdom Sets", "Reena", "SENIORS", 5142);
-        scoutTroops.addTroop(t1);
-        scoutTroops.addTroop(t2);
-        scoutTroops.addTroop(t3);
-        scoutTroops.addTroop(t4);
-        createdTroop();
-        GirlScout gs1 = new GirlScout("Ella", 2531);
-        gs1.addScoutToTroop();
-        createdGS(gs1);
-        GirlScout gs2 = new GirlScout("Shawna", "Waxing Moons");
-        gs2.addScoutToTroop();
-        createdGS(gs2);
-        GirlScout gs3 = new GirlScout("Ally", 9483);
-        gs3.addScoutToTroop();
-        createdGS(gs3);
-        GirlScout gs4 = new GirlScout("Hannah", "Icy Wavers");
-        gs4.addScoutToTroop();
-        createdGS(gs4);
-    }
+//    public void createModelTroops() throws InvalidTroopException {
+//        Troop t1 = new Troop("Waning Suns", "Susie", "JUNIORS", 9483);
+//        Troop t2 = new Troop("Waxing Moons", "Ally", "CADETTES", 2531);
+//        Troop t3 = new Troop("Icy Wavers", "Megan", "DAISIES", 6913);
+//        Troop t4 = new Troop("Kingdom Sets", "Reena", "SENIORS", 5142);
+//        scoutTroops.addTroop(t1);
+//        scoutTroops.addTroop(t2);
+//        scoutTroops.addTroop(t3);
+//        scoutTroops.addTroop(t4);
+//        createdTroop();
+//        GirlScout gs1 = new GirlScout("Ella", 2531);
+//        gs1.addScoutToTroop();
+//        createdGS(gs1);
+//        GirlScout gs2 = new GirlScout("Shawna", "Waxing Moons");
+//        gs2.addScoutToTroop();
+//        createdGS(gs2);
+//        GirlScout gs3 = new GirlScout("Ally", 9483);
+//        gs3.addScoutToTroop();
+//        createdGS(gs3);
+//        GirlScout gs4 = new GirlScout("Hannah", "Icy Wavers");
+//        gs4.addScoutToTroop();
+//        createdGS(gs4);
+//    }
     // Getters for model
     public ScoutTroops getScoutTroops() {
         return scoutTroops;
