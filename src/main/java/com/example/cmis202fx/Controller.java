@@ -1,6 +1,5 @@
 package com.example.cmis202fx;
 
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,14 +78,6 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
-        troopLV.getItems().addListener((ListChangeListener<Troop>)
-                change ->
-                        lblTotalTroops.setText("Total Amount of Troops: " + model.getTroopListSize()));
-
-
-        gsLV.getItems().addListener((ListChangeListener<GirlScout>)
-                change ->
-                        lblTotalGS.setText("Total Amount of Girl Scouts: " + model.getTotalGS()));
     }
     // Modal for adding a troop to the database
     @FXML
@@ -99,6 +90,10 @@ public class Controller implements Initializable {
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         stage.show();
+        stage.setOnHidden(WindowEvent -> {
+            lblTotalTroops.setText("Total Amount of Troops: " + model.getTroopListSize());
+            lblTotalGS.setText("Total Amount of Girl Scouts: " + model.getTotalGS());
+        });
     }
     // Modal for adding a girl scout to the database
     @FXML
@@ -111,6 +106,10 @@ public class Controller implements Initializable {
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         stage.show();
+        stage.setOnHidden(WindowEvent -> {
+            lblTotalTroops.setText("Total Amount of Troops: " + model.getTroopListSize());
+            lblTotalGS.setText("Total Amount of Girl Scouts: " + model.getTotalGS());
+        });
     }
     // Modal for adding an order to a girl scout
     @FXML
@@ -181,6 +180,8 @@ public class Controller implements Initializable {
                 model.removeTroop(troop);
                 Alert removedAlert = new Alert(Alert.AlertType.INFORMATION);
                 removedAlert.setTitle("Troop deleted");
+                lblTotalTroops.setText("Total Amount of Troops: " + model.getTroopListSize());
+                lblTotalGS.setText("Total Amount of Girl Scouts: " + model.getTotalGS());
                 removedAlert.setContentText(troop.getTroopName() + " has been deleted.");
                 removedAlert.showAndWait();
             }
@@ -205,6 +206,7 @@ public class Controller implements Initializable {
                 Troop troop = model.getScoutTroops().getTroopFromTroopName(girlScout.getTroopName());
                 troop.removeMember(girlScout.getScoutName());
                 model.deletedGS(girlScout);
+                lblTotalGS.setText("Total Amount of Girl Scouts: " + model.getTotalGS());
                 Alert removedAlert = new Alert(Alert.AlertType.INFORMATION);
                 removedAlert.setTitle("Scout Removed");
                 removedAlert.setContentText(girlScout.getScoutName() + " has been removed.");
@@ -317,6 +319,8 @@ public class Controller implements Initializable {
             boolean loadStatus = model.loadModelFromFile(loadFile);
             if (loadStatus){
                 hasSaved = true;
+                lblTotalTroops.setText("Total Amount of Troops: " + model.getTroopListSize());
+                lblTotalGS.setText("Total Amount of Girl Scouts: " + model.getTotalGS());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Loaded");
                 alert.setContentText("File has been loaded successfully.");
@@ -397,6 +401,7 @@ public class Controller implements Initializable {
         }
         return isExiting;
     }
+
     public void saveExit(){
         ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -408,6 +413,7 @@ public class Controller implements Initializable {
             System.exit(2);
         }
     }
+
     public boolean saveExitFromExit(){
         boolean exitConfirmed = true;
         ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
@@ -423,6 +429,7 @@ public class Controller implements Initializable {
         }
         return exitConfirmed;
     }
+
     public boolean handleSystemExit() {
         boolean exitStatus = true;
         if (!hasSaved){

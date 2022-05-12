@@ -188,15 +188,6 @@ public class Model implements Serializable {
         this.scoutTroops = loadedSC;
         troopList.clear();
         gsList.clear();
-//        createdTroop();
-//        for (Integer id:
-//             scoutTroops) {
-//            Troop t = scoutTroops.getTroopFromTroopNumber(id);
-//            List<GirlScout> gsL = t.getTroopMembers();
-//            for (GirlScout g: gsL) {
-//                createdGS(g);
-//            }
-//        }
         RunTask trpTask = new RunTask(1);
         RunTask gsTask = new RunTask(2);
         Thread t1 = new Thread(trpTask);
@@ -241,7 +232,7 @@ public class Model implements Serializable {
             if (taskNumber == 1){
                 createdTroop();
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(300);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
