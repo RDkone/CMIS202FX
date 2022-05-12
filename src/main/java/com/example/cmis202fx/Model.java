@@ -25,7 +25,7 @@ public class Model implements Serializable {
         setAgeLvls(this.ageLvlList);
         setCookies(this.cookieOrderList);
         setCookieNumBox(this.cookieBoxList);
-        // createModelTroops();
+//        createModelTroops();
     }
     // Test Method for adding troops and scouts to project view from model.
 //    public void createModelTroops() throws InvalidTroopException {
@@ -169,7 +169,7 @@ public class Model implements Serializable {
         return status;
     }
     // Loads a previous data file from FileChooser
-    public boolean loadModelFromFile(File file){
+    public boolean loadModelFromFile(File file) throws InterruptedException {
         boolean status = false;
         ScoutTroops loadedModelScouts = null;
         try (ObjectInputStream inp = new ObjectInputStream(new FileInputStream(file))) {
@@ -184,20 +184,29 @@ public class Model implements Serializable {
         return status;
     }
     // Gets the loaded database model and updates the contents of the other models
-    public void setLoadedModel(ScoutTroops loadedSC){
+    public void setLoadedModel(ScoutTroops loadedSC) throws InterruptedException {
         this.scoutTroops = loadedSC;
         troopList.clear();
         gsList.clear();
-        createdTroop();
-        for (Integer id:
-             scoutTroops) {
-            Troop t = scoutTroops.getTroopFromTroopNumber(id);
-            List<GirlScout> gsL = t.getTroopMembers();
-            for (GirlScout g:
-                 gsL) {
-                createdGS(g);
-            }
-        }
+//        createdTroop();
+//        for (Integer id:
+//             scoutTroops) {
+//            Troop t = scoutTroops.getTroopFromTroopNumber(id);
+//            List<GirlScout> gsL = t.getTroopMembers();
+//            for (GirlScout g: gsL) {
+//                createdGS(g);
+//            }
+//        }
+        RunTask trpTask = new RunTask(1);
+        RunTask gsTask = new RunTask(2);
+        Thread t1 = new Thread(trpTask);
+        Thread t2 = new Thread(gsTask);
+        t1.start();
+        t1.join();
+        // wait for Troops to load then load the scouts
+        t2.start();
+        t2.join();
+
     }
     // Binary Search for searching through list models
     private static <T> int BinarySearch(List<? extends Comparable<? super T>> list, T key) {
@@ -219,4 +228,42 @@ public class Model implements Serializable {
         return -(low + 1);  // Did Not Find Key
     }
 
+    class RunTask implements Runnable {
+
+        private int taskNumber;
+
+        public RunTask(int taskNum){
+            this.taskNumber = taskNum;
+        }
+
+        @Override
+        public void run() {
+            if (taskNumber == 1){
+                createdTroop();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            else if (taskNumber == 2){
+                for (Integer id:
+                        scoutTroops) {
+                    Troop t = scoutTroops.getTroopFromTroopNumber(id);
+                    List<GirlScout> gsL = t.getTroopMembers();
+                    for (GirlScout g: gsL) {
+                        createdGS(g);
+                        try {
+                            Thread.sleep(250);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
 }
+

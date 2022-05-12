@@ -307,7 +307,7 @@ public class Controller implements Initializable {
     }
     // Load previous projects that were saved to a file
     @FXML
-    private void loadSavedProject(MouseEvent event) {
+    private void loadSavedProject(MouseEvent event) throws InterruptedException {
         Window win = loadBtn.getScene().getWindow();
         fChooser.setTitle("Load Project File");
         fChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("data file", "*.dat"));
